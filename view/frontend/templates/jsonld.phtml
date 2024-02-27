@@ -1,0 +1,32 @@
+<?php $isProductPage = stristr($block->getRequest()->getFullActionName(), 'catalog_product_view'); ?>
+<?php $childHtml = $block->getChildHtml('', true); ?>
+<?php $mainEntity = $block->getChildHtml('main.entity'); ?>
+<?php if ($isProductPage && $childHtml): ?>
+<script type="application/ld+json">
+    <?= /* @noEscape */ $childHtml ?>
+</script>
+<?php endif; ?>
+
+<script type="application/ld+json">
+[{
+    "@context": "https://schema.org/",
+    "@type": "<?= $block->escapeQuote($block->getPageType()) ?>",
+    "publisher": {
+        "@type": "Organization",
+        "name": "<?= $block->escapeQuote($block->getConfig('general/store_information/name') ?? ''); ?>",
+        "url": "<?= $block->escapeUrl($block->getStore()->getBaseUrl()); ?>",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "<?= $block->escapeUrl($block->escapeQuote($block->getStoreLogoUrl()) ?? ''); ?>"
+        }
+    }
+    <?php if ($mainEntity != $childHtml): ?>
+        <?= /* @noEscape */ $mainEntity; ?>
+    <?php endif; ?>
+    <?php $block->unsetChild('main.entity');?>
+
+    <?php if (!$isProductPage && $childHtml): ?>
+        <?= /* @noEscape */ $childHtml; ?>
+    <?php endif; ?>
+}]
+</script>

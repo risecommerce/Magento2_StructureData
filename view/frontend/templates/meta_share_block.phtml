@@ -1,0 +1,93 @@
+<?php 
+
+$currentUrl = $block->getPageUrl();
+
+// SITE NAME (GENERAL -> STORE INFORMATION -> STORE NAME)
+$siteName = $block->getStoreName();
+
+// META TITLE / DESCRIPTION
+$prefix = $block->getPrefix() ? $block->getPrefix() . " ":"";
+$postfix = $block->getPostfix() ? " " . $block->getPostfix() :"";
+$pageTitle = $prefix . $block->getPageTitle() . $postfix;
+
+// META DESCRIPTION
+$description = $block->getPageDescription();
+
+// TWITTER
+$twitterEnabled = $block->twitterEnabled();
+$twitterImage = $block->getTwitterImage();
+$twitterAccount = $block->getTwitterAccount();
+$facebookAccount = $block->getFacebookAccount();
+$instagramAccount = $block->getInstagramAccount();
+
+// FACEBOOK
+$facebookEnabled = $block->facebookEnabled();
+$facebookImage = $block->getFacebookImage();
+
+//INSTAGRAM
+$instagramEnabled = $block->instagramEnabled();
+$instagramImage = $block->getInstagramImage();
+
+// PAGE TYPE (CMS / PRODUCT / CATEGORY / SEARCH)
+$pageType = $this->getRequest()->getFullActionName();
+
+$currentProductImage = "";
+
+// IF PRODUCT PAGE SHOW ADD PRODUCT IMAGE
+if($pageType == "catalog_product_view")
+{
+    if($block->getCurrentProductImage())
+    {
+        $currentProductImage = $block->getCurrentProductImage();
+    }
+    else
+    {
+        $currentProductImage = $facebookImage;
+    }
+}
+
+?>
+
+
+<?php if($twitterEnabled):?>
+<!-- Twitter Share Meta Tags -->
+<meta property="twitter:title" content="<?= $escaper->escapeHtml($pageTitle); ?>" />
+<meta property="twitter:description" content="<?= $escaper->escapeHtml($description); ?>" />
+<meta property="twitter:url" content="<?= $escaper->escapeHtml($currentUrl); ?>" />
+<meta property="twitter:type" content="article" />
+<?php if($pageType == "catalog_product_view"): ?>
+<meta property="twitter:image" content="<?= $escaper->escapeHtml($currentProductImage); ?>">
+<?php else: ?>
+<meta property="twitter:image" content="<?= $escaper->escapeHtml($twitterImage); ?>">
+<?php endif; ?>
+<!-- Twitter Share Meta Tags -->
+<?php endif; ?>
+
+<?php if($facebookEnabled):?>
+<!-- Facebook Share Meta Tags -->
+<meta property="og:site_name" content="<?= $escaper->escapeHtml($siteName); ?>">
+<meta property="og:url" content="<?= $escaper->escapeHtml($currentUrl); ?>" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="<?= $escaper->escapeHtml($pageTitle); ?>" />
+<meta property="og:description" content="<?= $escaper->escapeHtml($description); ?>" />
+<?php if($pageType == "catalog_product_view"): ?>
+<meta property="og:image" content="<?= $escaper->escapeHtml($currentProductImage); ?>" />
+<?php else: ?>
+<meta property="og:image" content="<?= $escaper->escapeHtml($facebookImage); ?>" />
+<?php endif; ?>
+<!-- Facebook Share Meta Tags -->
+<?php endif; ?>
+
+<?php if($instagramEnabled):?>
+<!-- Instagram Share Meta Tags -->
+<meta property="instapp:title" content="<?= $escaper->escapeHtml($pageTitle); ?>" />
+<meta property="instapp:description" content="<?= $escaper->escapeHtml($description); ?>" />
+<meta property="instapp:url" content="<?= $escaper->escapeHtml($currentUrl); ?>" />
+<meta property="instapp:type" content="article" />
+<?php if($pageType == "catalog_product_view"): ?>
+<meta property="instapp:image" content="<?= $escaper->escapeHtml($currentProductImage); ?>" />
+<?php else: ?>
+<meta property="instapp:image" content="<?= $escaper->escapeHtml($instagramImage); ?>" />
+<?php endif; ?>
+<!-- Instagram Share Meta Tags -->
+<?php endif; ?>

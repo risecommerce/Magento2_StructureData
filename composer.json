@@ -1,0 +1,36 @@
+{
+    "name": "risecommerce/magento-structured-data-module",
+    "description": "Magento Structured Data Module by outer/edge",
+    "type": "magento2-module",
+    "version": "3.0.2",
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "outer/edge",
+            "email": "support@risecommerce.agency",
+            "homepage": "https://risecommerce.agency/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.1"
+    },
+    "require-dev": {
+        "risecommerce/dev-dependencies": "^3.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Risecommerce\\StructuredData\\": ""
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}

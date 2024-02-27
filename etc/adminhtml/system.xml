@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="risecommerce" translate="label" sortOrder="2000" class="risecommerce-tab">
+            <label>Risecommerce</label>
+        </tab>  
+        <section id="structureddata" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Structured Data</label>
+            <tab>risecommerce</tab>
+            <resource>Risecommerce_StructuredData::StructuredDataSettings</resource>
+            <group id="product" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Structured Data (Product)</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_short_description" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Short Description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Instead of description</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="include_children" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include Child Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Include offers each child product on configurable products</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="include_weight" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include Product Weights</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="product_brand_field" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Brand/Manufacturer field</label>
+                </field>
+                <field id="product_gtin_field" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Gtin field</label>
+                </field>
+            </group>
+            <group id="cms" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Structured Data (CMS Page)</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_about" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable about page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="about_page" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>About Page</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Page</source_model>
+                    <depends>
+                        <field id="enable_about">1</field>
+                    </depends>
+                </field>
+            </group> 
+            <group id="contact" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Structured Data (Contact Page)</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Type</label>
+                    <source_model>Risecommerce\StructuredData\Model\Config\Source\ContactType</source_model>
+                </field>
+                <field id="latitude" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Latitude</label>
+                    <depends>
+                        <field id="type">LocalBusiness</field>
+                    </depends>
+                </field>
+                <field id="longitude" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Longitude</label>
+                    <depends>
+                        <field id="type">LocalBusiness</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="facebook_meta_share_options" sortOrder="40" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>Facebook Settings</label>
+                <comment>Settings for Facebook sharing tags</comment>
+                <field id="enable_disable_facebook_tags" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable Facebook Tags?</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+                <field id="facebook_username" translate="label" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Facebook Username</label>
+                    <comment>Please enter your Facebook account name (eg: Facebook)</comment>
+                    <validate>required-entry no-whitespace</validate>
+                    <depends>
+                        <field id="enable_disable_facebook_tags">1</field>
+                    </depends>
+                </field>
+                <field id="facebook_default_image" translate="label" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Default Image URL</label>
+                    <comment>Please add URL for default image used for sharing (in case the page is not Product Page)</comment>
+                    <validate>required-entry no-whitespace validate-url</validate>
+                    <depends>
+                        <field id="enable_disable_facebook_tags">1</field>
+                    </depends>
+                </field>
+			</group>
+            <group id="twitter_meta_share_options" sortOrder="50" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>Twitter/X Settings</label>
+                <comment>Settings for Twitter/X card tags</comment>
+                <field id="enable_disable_twitter_tags" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable Twitter/X Tags?</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+                <field id="twitter_username" translate="label" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Twitter/X Username</label>
+                    <comment>Please enter your Twitter/X account name (eg: @Twitter)</comment>
+                    <validate>required-entry no-whitespace</validate>
+                    <depends>
+                        <field id="enable_disable_twitter_tags">1</field>
+                    </depends>
+                </field>
+                <field id="twitter_default_image" translate="label" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Default Image URL</label>
+                    <comment>Please add URL for default image used for sharing (in case the page is not Product Page)</comment>
+                    <validate>required-entry no-whitespace validate-url</validate>
+                    <depends>
+                        <field id="enable_disable_twitter_tags">1</field>
+                    </depends>
+                </field>
+			</group>
+            <group id="instagram_meta_share_options" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>Instagram Settings</label>
+                <comment>Settings for Instagram sharing tags</comment>
+                <field id="enable_disable_instagram_tags" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable Instagram Tags?</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+                <field id="instagram_username" translate="label" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Instagram Username</label>
+                    <comment>Please enter your Instagram account name (eg: Instagram)</comment>
+                    <validate>required-entry no-whitespace</validate>
+                    <depends>
+                        <field id="enable_disable_instagram_tags">1</field>
+                    </depends>
+                </field>
+                <field id="instagram_default_image" translate="label" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Default Image URL</label>
+                    <comment>Please add URL for default image used for sharing (in case the page is not Product Page)</comment>
+                    <validate>required-entry no-whitespace validate-url</validate>
+                    <depends>
+                        <field id="enable_disable_instagram_tags">1</field>
+                    </depends>
+                </field>
+			</group>
+            <group id="additional_settings" sortOrder="70" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>Additional Settings</label>
+                <field id="prefix" translate="label" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Title Prefix</label>
+                    <comment>Please enter text that will be added at the beginning of the Page Title</comment>
+                </field>
+                <field id="postfix" translate="label" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" type="text">
+                    <label>Title Postfix</label>
+                    <comment>Please enter text that will be added at the end of the Page Title</comment>
+                </field>
+			</group>
+        </section>
+    </system>
+</config>

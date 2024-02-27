@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <structureddata>
+			<facebook_meta_share_options>
+				<enable_disable_facebook_tags/>
+			</facebook_meta_share_options>
+			<instagram_meta_share_options>
+				<enable_disable_instagram_tags/>
+			</instagram_meta_share_options>
+			<twitter_meta_share_options>
+				<enable_disable_twitter_tags/>
+			</twitter_meta_share_options>
+            <contact>
+                <type>Organization</type>
+            </contact>
+        </structureddata>
+    </default>
+</config>

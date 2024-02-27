@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="structured.data.jsonld">
+            <block ifconfig="structureddata/product/enable" class="Risecommerce\StructuredData\Block\Product" name="product.structured.data.jsonld" template="Risecommerce_StructuredData::jsonld/product.phtml" />
+        </referenceBlock>
+
+        <attribute name="itemtype" value=""/>
+        <attribute name="itemscope" value=""/>
+        <referenceBlock name="page.main.title">
+            <arguments>
+                <argument name="add_base_attribute" xsi:type="boolean">false</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.info.sku">
+            <arguments>
+                <argument name="add_attribute" xsi:type="boolean">false</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.info.overview">
+            <arguments>
+                <argument name="add_attribute" xsi:type="boolean">false</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.price.final">
+            <arguments>
+                <argument name="zone" xsi:type="boolean">false</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="breadcrumbs">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Catalog::product/breadcrumbs.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="product.info.main">
+        <block class="Magento\Catalog\Block\Product\View" name="productsocialimage" template="Risecommerce_StructuredData::product/view/shoping-image.phtml" after="-"/>
+        </referenceContainer>
+    </body>
+</page>

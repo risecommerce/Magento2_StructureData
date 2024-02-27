@@ -1,0 +1,9 @@
+<?php $_product = $block->getProduct();
+?>
+
+<?php if($_product->getThumbnail()){?>
+<meta  itemprop="image" content="<?=$block->getBaseUrl()?>media/catalog/product/<?= $_product->getThumbnail();?>">
+<?php }
+/* else{?>
+<meta name itemprop="image" content="<?=$block->getBaseUrl()?>media/webp_image/catalog/product/placeholder/default/SFDNoImage2023.webp">
+<?php } */?>
